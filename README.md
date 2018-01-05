@@ -31,4 +31,4 @@ And finally you're ready to run the script with:
 python ./IndexDownloader.py
 ```
 
-You'll get a series of input questions and if all your settings are correct you might as well be downloading a pipin' hot Elasticsearch index in minutes!
+which'll give you a series of input questions. After answering them all flawlessly you'll be downloading a pipin' hot Elasticsearch index in no time!
