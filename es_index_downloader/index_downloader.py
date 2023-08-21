@@ -116,8 +116,8 @@ class IndexDownloader:
         logger.info("exporting index to : %s" % outputDir)
         # continue with the real work
         fileHandles = {}
-        query = {"query": {"match_all": {}}, "size": 1000}
-        resp = es.search(index=indexName, body=query, scroll="1m")
+        query = {"query": {"match_all": {}}, "size": 50}
+        resp = es.search(index=indexName, body=query, scroll="10m", request_timeout=36000)
         if resp and "_scroll_id" in resp and len(resp["hits"]["hits"]) > 0:
             self.writeToFile(
                 outputDir, indexName, fileHandles, resp["hits"]["hits"], maxFileSize
@@ -127,9 +127,9 @@ class IndexDownloader:
             while True:
                 logger.info("%d => %s" % (count, scrollId))
                 if int(esInfo["version"]["number"][0:1]) < 5:
-                    scroll = es.scroll(scroll_id=scrollId, body=scrollId, scroll="1m")
+                    scroll = es.scroll(scroll_id=scrollId, body=scrollId, scroll="10m")
                 else:
-                    scroll = es.scroll(scroll_id=scrollId, scroll="1m")
+                    scroll = es.scroll(scroll_id=scrollId, scroll="10m")
                 if (
                     scroll
                     and "_scroll_id" in scroll
