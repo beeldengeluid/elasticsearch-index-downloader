@@ -9,7 +9,7 @@ packages = [{include = "elasticsearch_index_downloader"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 elasticsearch7 = "^7.17.8"
-urllib3 = "^1.26.14"
+urllib3 = "^1.26.17"
 
 
 [tool.poetry.group.dev.dependencies]
